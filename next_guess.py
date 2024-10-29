@@ -66,18 +66,24 @@ def analyze_guesses(guess_hint_dict):
     return result
 
 
+def print_analysis(words_with_analysis, title):
+    print(f'\n{title}')
+    for word, ev, maximum in words_with_analysis:
+        print(f'{word} {ev:.1f} expected {maximum} max')
+
+
 def find_best_guess(all_words, words_remaining):
     guess_hint_dict = build_guess_hint_dict(all_words, words_remaining)
     guess_analysis = analyze_guesses(guess_hint_dict)
-    best_ev = min(guess_analysis, key=lambda item: item[1])
-    best_max = min(guess_analysis, key=lambda item: item[2])
+    by_ev = sorted(guess_analysis, key=lambda item: (item[1], item[2]))[:10]
+    by_max = sorted(guess_analysis, key=lambda item: (item[2], item[1]))[:10]
     only_words_remaining_analysis = [analysis for analysis in guess_analysis if analysis[0] in words_remaining]
-    words_remaining_best_ev = min(only_words_remaining_analysis, key=lambda item: item[1])
-    words_remaining_best_max = min(only_words_remaining_analysis, key=lambda item: item[2])
-    print(best_ev)
-    print(best_max)
-    print(words_remaining_best_ev)
-    print(words_remaining_best_max)
+    words_remaining_by_ev = sorted(only_words_remaining_analysis, key=lambda item: (item[1], item[2]))[:10]
+    words_remaining_by_max = sorted(only_words_remaining_analysis, key=lambda item: (item[2], item[1]))[:10]
+    print_analysis(by_ev, 'Best EV')
+    print_analysis(by_max, 'Best Max')
+    print_analysis(words_remaining_by_ev, 'Best EV Valid Guess')
+    print_analysis(words_remaining_by_max, 'Best Max Valid Guess')
 
 
 def test_get_hint(verbose=False):
