@@ -131,7 +131,7 @@ def main():
     test()
     words_remaining = sys.stdin.read().splitlines()
     words_remaining = set(word for word in words_remaining if valid_wordle_word(word))
-    with open('/usr/share/dict/words', 'r') as dict_file:
+    with open('all_words.txt', 'r') as dict_file:
         all_words = set(word for word in dict_file.read().splitlines() if valid_wordle_word(word))
     find_best_guess(all_words, words_remaining)
 
