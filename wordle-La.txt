@@ -940,6 +940,7 @@ gulch
 gully
 gumbo
 gummy
+gunky
 guppy
 gusto
 gusty
@@ -1323,6 +1324,7 @@ nutty
 nylon
 nymph
 oaken
+oasis
 obese
 occur
 ocean
@@ -1746,6 +1748,7 @@ shout
 shove
 shown
 showy
+shred
 shrew
 shrub
 shrug
